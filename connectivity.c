@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<math.h>
+#include<stdlib.h>
 int main()
 {  
     int nel;
@@ -70,16 +71,38 @@ int main()
 	}
      
 
-//Using recursion to generate the rest of the matrix
+//Using recursion to generate the rest of the matrix by comparing with the elements right below
+	for(i=1;i<m;i++)
+	{	
+		for(j=0;j<2*n-1;j+=2)
+		{	for(k =0;k<21;k++)
+			{
+				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;    
+    		}
+			/*cnt[2*i*n+j][13]-=5;
+			cnt[2*i*n+j][20]-=5;
+			*/
+		}
+		for(j=1;j<2*n;j+=2)
+		{	for(k =0;k<21;k++)
+			{
+				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;    
+    		}
+			/*cnt[2*i*n+j][13]-=5;
+			cnt[2*i*n+j][20]-=5;
+			*/
+		}
+	}
 
 
 
 
     
 // printing out the connectivity matrix
+/*
+printf("Connectivity Matrix \n");
 
-
-    for(i=0;i<2*n;i++)
+    for(i=0;i<2*m*n;i++)
 	{
 	
     		for(int k=0;k<21;k++)
@@ -88,6 +111,39 @@ int main()
     		}
 		printf("\n");
 	}
+*/
+
+FILE *fp;
+char *num_string;
+num_string = (char*)malloc(20*sizeof(char));
+float element_stiffness[21][21];
+fp = fopen("stiffness_proper.txt","r");
+
+//Reading one number to test if it works
+for(i=0;i<21;i++) {
+	for(j=0;j<21;j++) {
+ 		k = 0;
+		num_string[k] = fgetc(fp);
+		while(num_string[k]!='\n') {
+			k++;
+			num_string[k] = fgetc(fp);
+		}
+		element_stiffness[i][j] = strtof(num_string,NULL);		 
+	//	printf("Read the number %s\n", num_string);
+	}
+}
+		
+fclose(fp);
+/*
+for(i=0;i<21;i++)
+{
+	for(j=0;j<21;j++)
+	{
+		printf("%.8f \t ",element_stiffness[i][j]);
+	}
+	printf("\n");
+}
+*/
 
     return 0;
 }
