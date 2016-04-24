@@ -99,6 +99,8 @@ int main()
 
     
 // printing out the connectivity matrix
+
+
 /*
 printf("Connectivity Matrix \n");
 
@@ -112,6 +114,8 @@ printf("Connectivity Matrix \n");
 		printf("\n");
 	}
 */
+
+// Importing Element Stiffness matrix from a Text file from MATLAB
 
 FILE *fp;
 char *num_string;
@@ -144,6 +148,11 @@ for(i=0;i<21;i++)
 	printf("\n");
 }
 */
+
+// Assembly of Global Stiffness matrix
+
+
+
 
     return 0;
 }
