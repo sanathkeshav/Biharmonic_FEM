@@ -2,7 +2,7 @@
 #include<math.h>
 #include<stdlib.h>
 int main()
-{  
+{
     int nel;
     int m;
     int n;
@@ -14,7 +14,7 @@ int main()
     for(int i=0;i<13;i++)
     {
         cnt[0][i]=i+1;
-       
+
     }
     j = 9*n+15;
     for(int i=0;i<6;i++)
@@ -40,7 +40,7 @@ int main()
     cnt[0][13]=7*n+8;
     j=0;
     for(int i=14;i<20;i++)
-    {    
+    {
 	cnt[0][i]=9*n+8+j;
         j++;
     }
@@ -55,7 +55,7 @@ int main()
 	{
 		for(i =0;i<21;i++)
 		{
-			cnt[k][i] = cnt[k-2][i]+7;    
+			cnt[k][i] = cnt[k-2][i]+7;
     		}
 		cnt[k][13]-=5;
 		cnt[k][20]-=5;
@@ -69,15 +69,15 @@ int main()
 		cnt[k][13]-=5;
 		cnt[k][20]-=5;
 	}
-     
+
 
 //Using recursion to generate the rest of the matrix by comparing with the elements right below
 	for(i=1;i<m;i++)
-	{	
+	{
 		for(j=0;j<2*n-1;j+=2)
 		{	for(k =0;k<21;k++)
 			{
-				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;    
+				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;
     		}
 			/*cnt[2*i*n+j][13]-=5;
 			cnt[2*i*n+j][20]-=5;
@@ -86,7 +86,7 @@ int main()
 		for(j=1;j<2*n;j+=2)
 		{	for(k =0;k<21;k++)
 			{
-				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;    
+				cnt[2*i*n+j][k] = cnt[2*(i-1)*n+j][k]+9*n+7;
     		}
 			/*cnt[2*i*n+j][13]-=5;
 			cnt[2*i*n+j][20]-=5;
@@ -97,23 +97,21 @@ int main()
 
 
 
-    
+
 // printing out the connectivity matrix
 
 
-/*
 printf("Connectivity Matrix \n");
 
     for(i=0;i<2*m*n;i++)
 	{
-	
+
     		for(int k=0;k<21;k++)
     		{
 			printf("%d	",cnt[i][k]);
     		}
 		printf("\n");
 	}
-*/
 
 // Importing Element Stiffness matrix from a Text file from MATLAB
 
@@ -132,11 +130,11 @@ for(i=0;i<21;i++) {
 			k++;
 			num_string[k] = fgetc(fp);
 		}
-		element_stiffness[i][j] = strtof(num_string,NULL);		 
+		element_stiffness[i][j] = strtof(num_string,NULL);
 	//	printf("Read the number %s\n", num_string);
 	}
 }
-		
+
 fclose(fp);
 /*
 for(i=0;i<21;i++)
